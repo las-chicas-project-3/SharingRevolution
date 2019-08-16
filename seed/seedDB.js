@@ -1,30 +1,54 @@
 const mongoose = require("mongoose");
 const db = require("../models");
 
-// This file empties the Books collection and inserts the books below
-
 mongoose.connect(
   process.env.MONGODB_URI ||
   "mongodb://localhost/SharingRevolution"
 );
 
+
+//Client
 const clientSeed = [
   {
     name: "Joyce",
     password: "catsamazing",
-    date: new Date(Date.now())
+    points: 40,
+    date: new Date(Date.now()),
+    object: {
+      name: "Back cracker",
+      points: 10,
+      description: "Stick that will crack your",
+    }
   },
   {
     name: "Caroline",
-    password: "cinamonmypassion",
+    password: "cinnamonmypassion",
+    points: 40,
     date: new Date(Date.now())
   },
   {
     name: "Mafalda",
     password: "typostar",
+    points: 40,
     date: new Date(Date.now())
   }
 ];
+
+//Object
+const objectSeed = [
+  {
+    name: "Reusable Cup",
+    points: 10,
+    description: "Reuse it on Starbucks"
+  },
+  {
+    name: "Iphone charger",
+    points: 10,
+    description: "When running out of battery is there to help"
+  }
+];
+
+
 
 db.Client
   .remove({})
@@ -37,3 +61,18 @@ db.Client
     console.error(err);
     process.exit(1);
   });
+
+
+db.Client
+  .remove({})
+  .then(() => db.Object.collection.insertMany(objectSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+
