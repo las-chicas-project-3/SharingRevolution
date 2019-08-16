@@ -1,7 +1,7 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
-//const routes = require("./routes");
+const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -13,7 +13,27 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-//app.use(routes);
+app.use(routes);
+
+app.get("/populateduser", function(req, res) {
+  // TODO
+  // =====
+  // Write the query to grab the documents from the User collection,
+  // and populate them with any associated Notes.
+  // TIP: Check the models out to see how the Notes refers to the User
+  // Find all Users
+  db.User.find({})
+  .populate("notes")
+  .then(function(dbUser) {
+    // If all Users are successfully found, send them back to the client
+    res.json(dbUser);
+  })
+  .catch(function(err) {
+    // If an error occurs, send the error back to the client
+    res.json(err);
+  })
+});
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SharingRevolution");

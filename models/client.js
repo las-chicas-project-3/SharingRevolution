@@ -5,7 +5,12 @@ const clientSchema = new Schema({
   name: { type: String, required: true },
   password: { type: String },
   points: { type: Number, default: 40 },
-  objects: { type: Object },
+  objects:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Object"
+    }
+  ],
   date: { type: Date, default: Date.now }
 });
 
