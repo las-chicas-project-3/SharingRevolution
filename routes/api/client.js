@@ -4,15 +4,16 @@ const router = require("express").Router();
 
 // Matches with "/api/clients"
 // router.route("/")
-//   .get(booksController.findAll)
-//   .post(booksController.create);
+//   .get(clientsController.findAll)
+//   .post(clientsController.create);
 
 // // Matches with "/api/clients/:id"
 // router
 //   .route("/:id")
-//   .get(booksController.findById)
-//   .put(booksController.update)
-//   .delete(booksController.remove);
+//   .get(clientsController.findById)
+//   .put(clientsController.update)
+//   .delete(clientsController.remove);
+
 
 
 
