@@ -15,8 +15,8 @@ function Navbar() {
             <Link
               to="/products"
               className={window.location.pathname === "/products"
-                  ? "nav-link active"
-                  : "nav-link"
+                ? "nav-link active"
+                : "nav-link"
               }
             >
               Products

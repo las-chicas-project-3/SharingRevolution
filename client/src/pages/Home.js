@@ -4,17 +4,14 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
-function About() {
+function Home() {
   return (
     <div>
-      <Hero backgroundImage="https://i.imgur.com/qkdpN.jpg">
-        <h1>Pupster</h1>
-        <h2>They're the Good Boys and Girls</h2>
-      </Hero>
+      <Hero />
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
-            <h1>Welcome To Pupster!</h1>
+            <h1>About</h1>
           </Col>
         </Row>
         <Row>
@@ -61,4 +58,4 @@ function About() {
   );
 }
 
-export default About;
+export default Home;
