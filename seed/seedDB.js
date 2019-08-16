@@ -12,16 +12,24 @@ const clientSeed = [
   {
     name: "Joyce",
     password: "catsamazing",
-    date: new Date(Date.now())
+    points: 40,
+    date: new Date(Date.now()),
+    object: {
+      name: "Back cracker",
+      points: 10,
+      description: "Stick that will crack your",
+    }
   },
   {
     name: "Caroline",
-    password: "cinamonmypassion",
+    password: "cinnamonmypassion",
+    points: 40,
     date: new Date(Date.now())
   },
   {
     name: "Mafalda",
     password: "typostar",
+    points: 40,
     date: new Date(Date.now())
   }
 ];
