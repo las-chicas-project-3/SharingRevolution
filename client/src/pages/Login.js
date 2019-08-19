@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Container from "../components/Container";
 import LoginForm from "../components/LoginForm";
 
+
+//Function to validate the login
 const Validator = require("validator");
 const isEmpty = require("is-empty");
 module.exports = function validateLoginInput(data) {
@@ -28,18 +30,18 @@ module.exports = function validateLoginInput(data) {
 
 
 
-class Login extends Component {
+// class Login extends Component {
 
-  render() {
-    return (
-      <div>
-        <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Login</h1>
-          <LoginForm />
-        </Container>
-      </div>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <div>
+//         <Container style={{ minHeight: "80%" }}>
+//           <h1 className="text-center">Login</h1>
+//           <LoginForm />
+//         </Container>
+//       </div>
+//     );
+//   }
+// }
 
-export default Login;
+// export default Login;
