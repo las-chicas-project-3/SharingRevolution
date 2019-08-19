@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
-import Form from "../components/Form";
+import SignupForm from "../components/SignupForm";
 
 class Signup extends Component {
-  state = {
-    firstname: "",
-    lastname: [],
-    email: [],
-    password: ""
-  };
 
   render() {
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
           <h1 className="text-center">Signup</h1>
-        <Form />
+        <SignupForm />
         </Container>
       </div>
     );
