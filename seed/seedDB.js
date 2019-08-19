@@ -14,7 +14,7 @@ const clientSeed = [
     password: "catsamazing",
     points: 40,
     date: new Date(Date.now()),
-    object: {
+    objects: {
       name: "Back cracker",
       points: 10,
       description: "Stick that will crack your",
