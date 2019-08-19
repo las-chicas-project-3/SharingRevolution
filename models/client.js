@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const clientSchema = new Schema({
   name: { type: String, required: true },
-  password: { type: String },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
   points: { type: Number, default: 40 },
   objects:[
     {
