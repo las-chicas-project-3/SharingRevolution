@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+const passport= require("passport")
+const Client = require("./routes/api/client");
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,7 +25,12 @@ app.use(
 );
 app.use(bodyParser.json());
 
-
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use("/api/users", Client);
 
 // Add routes, both API and view
 //app.use(routes);

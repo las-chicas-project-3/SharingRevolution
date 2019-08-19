@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+// import React, { Component } from "react";
 
-import Test from "test";
-import Container from "../components/Container";
-import SignupForm from "../components/SignupForm";
+// import Test from "test";
+// import Container from "../components/Container";
+// import SignupForm from "../components/SignupForm";
 
 const Validator = require("validator");
 const isEmpty = require("is-empty");
