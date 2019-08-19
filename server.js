@@ -43,7 +43,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SharingRevoluti
 
 app.get("/api/clients", function (req, res) {
   db.Client.find({})
-    .populate("Object")
     .then(function (dbClient) {
       console.log(dbClient)
       res.json(dbClient);
@@ -53,6 +52,16 @@ app.get("/api/clients", function (req, res) {
     })
 });
 
+app.get("/api/objects", function (req, res) {
+  db.Object.find({})
+    .then(function (dbObject) {
+      console.log(dbObject)
+      res.json(dbObject);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
 
 app.post("/submit/:id", function(req, res) {
   db.Client.create(req.body)

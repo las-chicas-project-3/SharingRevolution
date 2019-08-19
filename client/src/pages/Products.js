@@ -7,11 +7,25 @@ import Card from "../components/Card";
 
 class Products extends Component {
   state = {
-    image: "",
-    name: "Bike",
-    points: 50,
-    owner: "Mafalda"
-  };
+    clients: [],
+    objects: ["banana"]
+  }
+
+  componentDidMount = () => this.setState(this.props.info)
+  // getClientFromDb = () => {
+  //   fetch('http://localhost:3000/api/clients')
+  //     .then((data) => data.json())
+  //     .then((res) => this.setState({ clients: res.data }));
+  // };
+
+  componentDidUpdate = () => console.log(this.state)
+
+  // getObjectFromDb = () => {
+  //   fetch('http://localhost:3000/api/objects')
+  //     .then((data) => data.json())
+  //     .then((res) => this.setState({ objects: res.data }));
+  // };
+
   render() {
     return (
       <div>
@@ -28,8 +42,15 @@ class Products extends Component {
             </Col>
           </Row>
         </Container>
-        <Card image={this.state.image} name={this.state.name} points={this.state.points} owner={this.state.owner}/>
-      </div>
+      {this.state.clients.map(client=>{
+        return <Card client={client} key={client._id}>}></Card>
+      })}
+
+      {this.state.objects.map(object=>{
+        return <Card product={object} key={object._id}>}></Card>
+      })}
+      
+    </div>
     );
   }
 }
