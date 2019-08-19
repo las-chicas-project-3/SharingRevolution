@@ -17,10 +17,12 @@ router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
     if (!isValid) {
+        console.log(req.body)
         return res.status(400).json(errors);
     }
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
+            console.log(user);
             return res.status(400).json({ email: "Email already exists" });
         } else {
             const newUser = new User({
