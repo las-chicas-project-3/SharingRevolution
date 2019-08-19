@@ -1,20 +1,10 @@
-const router = require("express").Router();
-//Will control it when chang
-//const clientController = require("../../controllers/clientsController");
-
-// Matches with "/api/clients"
-// router.route("/")
-//   .get(clientsController.findAll)
-//   .post(clientsController.create);
-
-// // Matches with "/api/clients/:id"
-// router
-//   .route("/:id")
-//   .get(clientsController.findById)
-//   .put(clientsController.update)
-//   .delete(clientsController.remove);
-
-
-
-
-module.exports = router;
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
+// Load input validation
+const validateRegisterInput = require("../../client/src/pages/Signup");
+const validateLoginInput = require("../../client/src/pages/Login");
+// Load User model
+const User = require("../../models/client");
