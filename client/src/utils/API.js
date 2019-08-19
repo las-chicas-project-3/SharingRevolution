@@ -1,10 +1,4 @@
 import axios from 'axios';
 
-export default  {
-  getClient: function() {
-    return axios.get("/api/clients")
-  },
-  getObject: function() {
-    return axios.get("/api/objects")
-  }
-}
+// Export an object containing methods we'll use for accessing the Dog.Ceo API
+

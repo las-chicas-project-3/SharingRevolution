@@ -2,9 +2,14 @@ const express = require("express");
 var db = require("./models");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+var morgan = require('morgan');
 //const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+app.use(morgan("combined"));
+
+const passport= require("passport")
+const Client = require("./routes/api/client");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +27,12 @@ app.use(
 );
 app.use(bodyParser.json());
 
-
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use("/api/users", Client);
 
 // Add routes, both API and view
 //app.use(routes);
