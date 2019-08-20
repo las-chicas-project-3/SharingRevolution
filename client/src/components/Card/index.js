@@ -1,4 +1,5 @@
 import React from "react";
+import BuyButton from "../BuyButt";
 import "./style.css";
 
 function Card(props) {
@@ -13,6 +14,8 @@ function Card(props) {
     return (
       <div className="card" key={props.product.key}>
         <h1>product name : {props.product.name}</h1>
+        <h1>price : {props.product.points}</h1>
+        <BuyButton id={props.product._id}/>
       </div>
     )
   }

@@ -5,10 +5,11 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import Card from "../components/Card";
 
+
 class Products extends Component {
   state = {
     users: [],
-    objects: ["banana"]
+    objects: []
   }
 
   componentDidMount = () => this.setState(this.props.info)
@@ -47,7 +48,8 @@ class Products extends Component {
       })}
 
       {this.state.objects.map(object=>{
-        return <Card product={object} key={object._id}>}></Card>
+        return <Card product={object} key={object._id} id={object._id}>
+        </Card>
       })}
       
     </div>
