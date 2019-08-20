@@ -12,7 +12,11 @@ class Products extends Component {
     objects: []
   }
 
-
+  handleOnClick = (id) => (event) => {
+    event.preventDefault();
+    console.log(id)
+    console.log("clicked")
+  }
 
 
   componentDidMount = () => this.setState(this.props.info)
@@ -23,17 +27,12 @@ class Products extends Component {
   // };
 
   componentDidUpdate = () => console.log(this.state)
-
+    
   // getObjectFromDb = () => {
   //   fetch('http://localhost:3000/api/objects')
   //     .then((data) => data.json())
   //     .then((res) => this.setState({ objects: res.data }));
   // };
-
-  handleOnClick = () => {
-    console.log(this.id)
-    console.log("clicked")
-  }
 
   render() {
     return (
@@ -53,11 +52,12 @@ class Products extends Component {
         </Container>
       {this.state.users.map(user=>{
         return <Card user={user} key={user._id}>
+
         </Card>
       })}
 
       {this.state.objects.map(object=>{
-        return <Card product={object} key={object._id} id={object._id} onClick={this.handleOnClick()}>
+        return <Card product={object} key={object._id} id={object._id} onClick={this.handleOnClick(object._id)}>
         </Card>
       })}
       
