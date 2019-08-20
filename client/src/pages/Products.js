@@ -5,11 +5,15 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import Card from "../components/Card";
 
+
 class Products extends Component {
   state = {
-    clients: [],
-    objects: ["banana"]
+    users: [],
+    objects: []
   }
+
+
+
 
   componentDidMount = () => this.setState(this.props.info)
   // getClientFromDb = () => {
@@ -25,6 +29,11 @@ class Products extends Component {
   //     .then((data) => data.json())
   //     .then((res) => this.setState({ objects: res.data }));
   // };
+
+  handleOnClick = () => {
+    console.log(this.id)
+    console.log("clicked")
+  }
 
   render() {
     return (
@@ -42,12 +51,14 @@ class Products extends Component {
             </Col>
           </Row>
         </Container>
-      {this.state.clients.map(client=>{
-        return <Card client={client} key={client._id}>}></Card>
+      {this.state.users.map(user=>{
+        return <Card user={user} key={user._id}>
+        </Card>
       })}
 
       {this.state.objects.map(object=>{
-        return <Card product={object} key={object._id}>}></Card>
+        return <Card product={object} key={object._id} id={object._id} onClick={this.handleOnClick()}>
+        </Card>
       })}
       
     </div>

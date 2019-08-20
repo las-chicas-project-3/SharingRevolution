@@ -7,18 +7,18 @@ mongoose.connect(
 );
 
 
-//Client
-const clientSeed = [
+//User
+const userSeed = [
   {
     name: "Joyce",
     password: "catsamazing",
     points: 40,
     date: new Date(Date.now()),
-    objects: {
+    objects: [{
       name: "Back cracker",
       points: 10,
       description: "Stick that will crack your",
-    }
+    }]
   },
   {
     name: "Caroline",
@@ -50,9 +50,9 @@ const objectSeed = [
 
 
 
-db.Client
+db.User
   .remove({})
-  .then(() => db.Client.collection.insertMany(clientSeed))
+  .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
@@ -63,7 +63,7 @@ db.Client
   });
 
 
-db.Client
+db.User
   .remove({})
   .then(() => db.Object.collection.insertMany(objectSeed))
   .then(data => {
