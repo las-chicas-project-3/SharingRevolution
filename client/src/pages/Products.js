@@ -7,7 +7,7 @@ import Card from "../components/Card";
 
 class Products extends Component {
   state = {
-    clients: [],
+    users: [],
     objects: ["banana"]
   }
 
@@ -42,8 +42,8 @@ class Products extends Component {
             </Col>
           </Row>
         </Container>
-      {this.state.clients.map(client=>{
-        return <Card client={client} key={client._id}>}></Card>
+      {this.state.users.map(user=>{
+        return <Card user={user} key={user._id}>}></Card>
       })}
 
       {this.state.objects.map(object=>{

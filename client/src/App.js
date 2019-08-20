@@ -17,15 +17,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getClientFromDb();
+    this.getUserFromDb();
     this.getObjectFromDb();
   }
 
   componentDidUpdate(){
   }
 
-  getClientFromDb = () => {
-    API.getClient().then(res=>this.setState({clients:res.data}))
+  getUserFromDb = () => {
+    API.getUser().then(res=>this.setState({user:res.data}))
   };
 
   getObjectFromDb = () => {

@@ -7,7 +7,20 @@ const keys = require("../../config/keys");
 const validateRegisterInput = require("../../client/src/pages/Signup");
 const validateLoginInput = require("../../client/src/pages/Login");
 // Load User model
-const User = require("../../models/client");
+const User = require("../../models/user");
+
+
+router.get("/info", (req, res) => {
+    User.find({})
+    .then(function (dbUser) {
+      console.log(dbUser)
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
+
 
 // @route POST api/users/register
 // @desc Register user
@@ -94,7 +107,5 @@ router.post("/login", (req, res) => {
         });
     });
 });
-
-
 
 module.exports = router;

@@ -2,11 +2,11 @@ import React from "react";
 import "./style.css";
 
 function Card(props) {
-  if (props.client) {
+  if (props.user) {
     return (
-      <div className="card" key={props.client.key}>
-        <h1>client name : {props.client.name}</h1>
-        <h1>points : {props.client.points}</h1>
+      <div className="card" key={props.user.key}>
+        <h1>client name : {props.user.name}</h1>
+        <h1>points : {props.user.points}</h1>
       </div>
     )
   } else {
