@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import image from "./LIÈREN.png"
+import image from "./LIEREN.png"
 
 function Hero(props) {
   return (

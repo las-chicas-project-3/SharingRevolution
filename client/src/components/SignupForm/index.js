@@ -2,12 +2,16 @@ import React, { Component } from "react";
 import "./style.css";
 
 class SignupForm extends Component {
-  state = {
-    firstName: "",
+  constructor() {
+    super();
+  this.state = {
+    name: "",
     email: "",
-    password: "",
-    points: 100
+    password: "", 
+    password2: "",
+  errors: {}
   };
+}
 
   handleInputChange = name => event => {
     const { value } = event.target;
@@ -18,18 +22,19 @@ class SignupForm extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.firstName === "" || this.state.email === "") {
-      return alert("You must provide first name and email.")
-    }
-    if (this.state.password.length < 6) {
-      return alert("Your password must be at least 6 characters long.")
-    }
+    // if (this.state.name === "" || this.state.email === "") {
+    //   return alert("You must provide first name and email.")
+    // }
+    // if (this.state.password.length < 6) {
+    //   return alert("Your password must be at least 6 characters long.")
+    // }
 
-    alert(`Hello ${this.state.firstName}!`);
+    // alert(`Hello ${this.state.name}!`);
     this.setState({
-      firstName: "",
+      name: "",
       email: "",
-      password: ""
+      password: "",
+      password2: ""
     });
   };
 
@@ -37,14 +42,14 @@ class SignupForm extends Component {
     return (
       <div>
         <p>
-          Hello {this.state.firstName}
+          Hello, {this.state.name}
         </p>
         <form className="form">
           <input
-            value={this.state.firstName}
-            onChange={this.handleInputChange("firstName")}
+            value={this.state.name}
+            onChange={this.handleInputChange("name")}
             type="text"
-            placeholder="First Name"
+            placeholder="Name"
           />
           <input
             value={this.state.email}
@@ -58,8 +63,13 @@ class SignupForm extends Component {
             type="password"
             placeholder="Password"
           />
-          <p>Starting points: {this.state.points}</p>
-          <button onClick={this.handleFormSubmit}>Signup</button>
+             <input
+            value={this.state.password2}
+            onChange={this.handleInputChange("password2")}
+            type="password2"
+            placeholder="Confirm Password"
+          />
+                  <button onClick={this.handleFormSubmit}>Signup</button>
         </form>
       </div>
     );

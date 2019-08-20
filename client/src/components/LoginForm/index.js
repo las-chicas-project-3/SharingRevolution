@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import "./style.css";
 
 class LoginForm extends Component {
-  state = {
+  constructor() {
+    super();
+  this.state = {
     email: "",
-    password: "",
+    password: ""
   };
-
+  }
   handleInputChange = name => event => {
     const { value } = event.target;
     this.setState({

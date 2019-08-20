@@ -32,7 +32,7 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
-app.use("/api/users", Client);
+app.use("/", Client);
 
 // Add routes, both API and view
 //app.use(routes);
@@ -41,41 +41,41 @@ app.use("/api/users", Client);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SharingRevolution");
 
 
-app.get("/api/clients", function (req, res) {
-  db.Client.find({})
-    .then(function (dbClient) {
-      console.log(dbClient)
-      res.json(dbClient);
-    })
-    .catch(function (err) {
-      res.json(err);
-    })
-});
+// app.get("/api/clients", function (req, res) {
+//   db.Client.find({})
+//     .then(function (dbClient) {
+//       console.log(dbClient)
+//       res.json(dbClient);
+//     })
+//     .catch(function (err) {
+//       res.json(err);
+//     })
+// });
 
-app.get("/api/objects", function (req, res) {
-  db.Object.find({})
-    .then(function (dbObject) {
-      console.log(dbObject)
-      res.json(dbObject);
-    })
-    .catch(function (err) {
-      res.json(err);
-    })
-});
+// app.get("/api/objects", function (req, res) {
+//   db.Object.find({})
+//     .then(function (dbObject) {
+//       console.log(dbObject)
+//       res.json(dbObject);
+//     })
+//     .catch(function (err) {
+//       res.json(err);
+//     })
+// });
 
-app.post("/submit/:id", function(req, res) {
-  db.Client.create(req.body)
-    .then(function(dbObject) {
-      console.log(dbClient)
-      return db.Client.findOneAndUpdate({_id: req.params.id}, { $push: { objects: dbObject._id} }, { new: true });
-    })
-    .then(function(dbClient) {
-      res.json(dbClient);
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
-});
+// app.post("/submit/:id", function(req, res) {
+//   db.Client.create(req.body)
+//     .then(function(dbObject) {
+//       console.log(dbClient)
+//       return db.Client.findOneAndUpdate({_id: req.params.id}, { $push: { objects: dbObject._id} }, { new: true });
+//     })
+//     .then(function(dbClient) {
+//       res.json(dbClient);
+//     })
+//     .catch(function(err) {
+//       res.json(err);
+//     });
+// });
 
 // Start the API server
 app.listen(PORT, function () {
