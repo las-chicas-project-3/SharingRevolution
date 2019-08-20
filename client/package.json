@@ -4,7 +4,7 @@
   "description": "Mern Demo",
   "private": true,
   "secure": false,
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "is-empty": "^1.2.0",
     "react": "^16.6.3",
