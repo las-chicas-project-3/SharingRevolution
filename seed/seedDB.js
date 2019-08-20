@@ -14,11 +14,11 @@ const clientSeed = [
     password: "catsamazing",
     points: 40,
     date: new Date(Date.now()),
-    objects: {
+    objects: [{
       name: "Back cracker",
       points: 10,
       description: "Stick that will crack your",
-    }
+    }]
   },
   {
     name: "Caroline",
