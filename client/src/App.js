@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import API from "./utils/API";
+import { Provider } from "react-redux";
+import store from "./store";
 
 class App extends Component {
 
@@ -35,6 +37,7 @@ class App extends Component {
 
   render() {
     return (
+      <Provider store={store}>
       <Router>
         <div>
           <Navbar />
@@ -47,6 +50,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
+      </Provider>
     );
   }
 }
