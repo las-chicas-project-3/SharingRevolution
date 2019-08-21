@@ -1,10 +1,13 @@
 import axios from 'axios';
 
 export default  {
-  getClient: function() {
-    return axios.get("/api/clients")
+  getUser: function() {
+    return axios.get("/api/user/info")
+  },
+  updateUser: function(userId,result) {
+    return axios.get("/api/user/update/"+ userId +"/"+ result)
   },
   getObject: function() {
-    return axios.get("/api/objects")
+    return axios.get("/api/object/info")
   }
 }
