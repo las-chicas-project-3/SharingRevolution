@@ -10,27 +10,48 @@ const validateLoginInput = require("../../Auth/login");
 // Load User model
 const User = require("../../models/user");
 
-
 router.get("/info", (req, res) => {
     User.find({})
-    .then(function (dbUser) {
-      console.log(dbUser)
-      res.json(dbUser);
-    })
-    .catch(function (err) {
-      res.json(err);
-    })
+        .then(function (dbUser) {
+            res.json(dbUser);
+        })
+        .catch(function (err) {
+            res.json(err);
+        })
 });
 
-router.put("/update/:id/:result", (req, res) => {
-    User.update({ _id: req.params.id },{ $set: { points: req.params.result }})
-    .then(function (dbUser) {
-      console.log(dbUser)
-      res.json(dbUser);
-    })
-    .catch(function (err) {
-      res.json(err);
-    })
+
+//Getting information from a particular user
+router.get("/info/:id", (req, res) => {
+    User.find({ _id: req.params.id })
+        .then(function (dbUser) {
+            console.log(dbUser)
+            res.json(dbUser);
+        })
+        .catch(function (err) {
+            res.json(err);
+        })
+});
+
+router.put("/update", (req, res) => {
+    
+    const userCurrentPoints = req.body.userId.userId.points
+    const objectCurrentPoints = req.body.userId.obj.points
+    const result = userCurrentPoints - objectCurrentPoints
+
+    console.log("Result ")
+    console.log(result)
+
+    User.update({ _id: req.params.id }, { $set: { points: result } })
+        .then(function (dbUser) {
+            console.log(dbUser)
+            res.json(dbUser);
+
+        })
+        .catch(function (err) {
+            res.json(err);
+        })
+
 });
 
 

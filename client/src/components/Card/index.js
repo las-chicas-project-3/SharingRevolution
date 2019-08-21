@@ -15,7 +15,7 @@ function Card(props) {
       <div className="card" key={props.product.key}>
         <h1>product name : {props.product.name}</h1>
         <h1>price : {props.product.points}</h1>
-        <BuyButton id={props.product._id} onClick={props.onClick}/>
+        <BuyButton price={props.product.points} id={props.product._id} onClick={props.onClick}/>
       </div>
     )
   }
