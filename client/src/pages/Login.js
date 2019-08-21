@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
+import API from "../utils/API";
 class Login extends Component {
   constructor() {
     super();
@@ -40,7 +41,7 @@ if (nextProps.errors) {
       password: this.state.password
     };
     console.log(userData);
-    this.props.loginUser(userData);
+    API.login(userData).then(res=>console.log(res))
   };
 
   render() {
