@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+// import Signup from "./components/auth/Register"; --JB coded out 906pm
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
@@ -41,7 +42,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/products" component={() => <Products info={this.state} />}/>
             <Route exact path="/signup" component={Signup} />
-            <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={Login} />
           </Wrapper>
           <Footer />
         </div>
