@@ -21,6 +21,16 @@ router.get("/info", (req, res) => {
     })
 });
 
+router.put("/update/:id/:result", (req, res) => {
+    User.update({ _id: mongojs.ObjectId(req.params.id) },{ $set: { points: req.params.result }})
+    .then(function (dbUser) {
+      console.log(dbUser)
+      res.json(dbUser);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
 
 // @route POST api/users/register
 // @desc Register user
