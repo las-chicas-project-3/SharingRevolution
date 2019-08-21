@@ -14,13 +14,20 @@ class Products extends Component {
   }
 
   //This.props.user will be updated with the current user that is log in
-  buyOnClick = (id, price) => (event) => {
+  buyOnClick = (price) => (event) => {
     event.preventDefault();
-    console.log(id)
-    console.log(price)
-    console.log(this.props.info.user[0].points)
-    var result = price - this.props.info.user[0].points
-    API.updateUser({ id, result })
+    
+    var userPoints = this.props.info.user[0].points
+    var userId = this.props.info.user[0]._id
+    var result = userPoints - price
+
+    console.log("userId =" + userId)
+    console.log("Price of the product = " + price)
+    console.log("Points of the user = " + this.props.info.user[0].points)
+    console.log(userPoints + "-" + price + "=" + result)
+
+
+    API.updateUser({ userId, result })
   }
 
 
@@ -62,7 +69,7 @@ class Products extends Component {
         })}
 
         {this.state.objects.map(object => {
-          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick(object._id, object.points)}>
+          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick(object.points)}>
           </Card>
         })}
 
