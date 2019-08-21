@@ -23,7 +23,7 @@ router.get("/info", (req, res) => {
 });
 
 router.put("/update/:id/:result", (req, res) => {
-    User.update({ _id: mongojs.ObjectId(req.params.id) },{ $set: { points: req.params.result }})
+    User.update({ _id: req.params.id },{ $set: { points: req.params.result }})
     .then(function (dbUser) {
       console.log(dbUser)
       res.json(dbUser);

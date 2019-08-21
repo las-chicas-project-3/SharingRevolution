@@ -10,24 +10,31 @@ import API from "../utils/API"
 class Products extends Component {
   state = {
     users: [],
-    objects: []
+    objects: [],
+    userId: 0,
+    result: 0
   }
 
   //This.props.user will be updated with the current user that is log in
   buyOnClick = (price) => (event) => {
     event.preventDefault();
     
-    var userPoints = this.props.info.user[0].points
-    var userId = this.props.info.user[0]._id
-    var result = userPoints - price
+    let userPoints = this.props.info.user[0].points 
+    let userId = this.props.info.user[0]._id
+    let result = userPoints - price
 
     console.log("userId =" + userId)
     console.log("Price of the product = " + price)
     console.log("Points of the user = " + this.props.info.user[0].points)
     console.log(userPoints + "-" + price + "=" + result)
+    
+    console.log("user id =" + userId)
+    console.log(typeof userId)
+    
+    console.log("result stringify =" + result)
+    console.log(typeof result)
 
-
-    API.updateUser({ userId, result })
+    API.updateUser(userId, result)
   }
 
 
