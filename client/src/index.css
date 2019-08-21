@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  font-family: Avenir;
+  color: #0433FF;
+}
+
+html,
+body,
+#root,
+#root > div,
+div[data-reactroot] {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
