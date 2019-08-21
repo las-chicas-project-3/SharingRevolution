@@ -60,6 +60,7 @@ router.put("/update", (req, res) => {
 // @access Public
 router.post("/register", (req, res) => {
     // Form validation
+    console.log(req.body)
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
     if (!isValid) {

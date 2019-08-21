@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../actions/authActions";
+import classnames from "classnames";
+import API from "./../utils/API"
+
 class Register extends Component {
   constructor() {
     super();
@@ -11,6 +17,22 @@ class Register extends Component {
       errors: {}
     };
   }
+
+  componentDidMount =() => {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.errors) {
+        this.setState({
+          errors: nextProps.errors
+        });
+      }
+    }
+
+
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -23,7 +45,9 @@ class Register extends Component {
       password2: this.state.password2
     };
     console.log(newUser);
+    API.registerUser(newUser); 
   };
+
   render() {
     const { errors } = this.state;
     return (
@@ -50,8 +74,12 @@ class Register extends Component {
                   error={errors.name}
                   id="name"
                   type="text"
+                  className={classnames("", {
+                    invalid: errors.name
+                  })}
                 />
                 <label htmlFor="name">Name</label>
+                <span className="red-text">{errors.name}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -60,8 +88,12 @@ class Register extends Component {
                   error={errors.email}
                   id="email"
                   type="email"
+                  className={classnames("", {
+                    invalid: errors.email
+                  })}
                 />
                 <label htmlFor="email">Email</label>
+                <span className="red-text">{errors.email}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -70,8 +102,12 @@ class Register extends Component {
                   error={errors.password}
                   id="password"
                   type="password"
+                  className={classnames("", {
+                    invalid: errors.password
+                  })}
                 />
                 <label htmlFor="password">Password</label>
+                <span className="red-text">{errors.password}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -80,8 +116,12 @@ class Register extends Component {
                   error={errors.password2}
                   id="password2"
                   type="password"
+                  className={classnames("", {
+                    invalid: errors.password2
+                  })}
                 />
                 <label htmlFor="password2">Confirm Password</label>
+                <span className="red-text">{errors.password2}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -104,43 +144,21 @@ class Register extends Component {
     );
   }
 }
-export default Register;
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
 
 
-// //Function to validate the signup
-// module.exports = function validateRegisterInput(data) {
-//   let errors = {};
-//   // Convert empty fields to an empty string so we can use validator functions
-//   data.name = !isEmpty(data.name) ? data.name : "";
-//   data.email = !isEmpty(data.email) ? data.email : "";
-//   data.password = !isEmpty(data.password) ? data.password : "";
-//   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
-//   // Name checks
-//   if (Validator.isEmpty(data.name)) {
-//     errors.name = "Name field is required";
-//   }
-//   // Email checks
-//   if (Validator.isEmpty(data.email)) {
-//     errors.email = "Email field is required";
-//   } else if (!Validator.isEmail(data.email)) {
-//     errors.email = "Email is invalid";
-//   }
-//   // Password checks
-//   if (Validator.isEmpty(data.password)) {
-//     errors.password = "Password field is required";
-//   }
-//   if (Validator.isEmpty(data.password2)) {
-//     errors.password2 = "Confirm password field is required";
-//   }
-//   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-//     errors.password = "Password must be at least 6 characters";
-//   }
-//   if (!Validator.equals(data.password, data.password2)) {
-//     errors.password2 = "Passwords must match";
-//   }
-//   return {
-//     errors,
-//     isValid: isEmpty(errors)
-//   };
-// };
 
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));
