@@ -55,6 +55,7 @@ class App extends Component {
     API.getUser().then(res=>this.setState({user:res.data}))
   };
 
+
   getObjectFromDb = () => {
     API.getObject().then(res=>this.setState({objects:res.data}))
   };

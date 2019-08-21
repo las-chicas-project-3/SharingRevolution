@@ -10,41 +10,48 @@ import API from "../utils/API"
 class Products extends Component {
   state = {
     users: [],
-    objects: []
+    objects: [],
+
+    currentUser: "",
+    objectPrice: 0,
+    userPoints: 0
   }
 
-  //This.props.user will be updated with the current user that is log in
-  buyOnClick = (price) => (event) => {
+
+  buyOnClick = (event) => {
     event.preventDefault();
-    
-    var userPoints = this.props.info.user[0].points
-    var userId = this.props.info.user[0]._id
-    var result = userPoints - price
-
-    console.log("userId =" + userId)
-    console.log("Price of the product = " + price)
-    console.log("Points of the user = " + this.props.info.user[0].points)
-    console.log(userPoints + "-" + price + "=" + result)
-
-
-    API.updateUser({ userId, result })
+    // Ask the user if he wants to do it
+    API.getObjectId(event.target.id).then(res => {
+ 
+      if (res.data[0].points < this.state.currentUser.points) {
+        console.log("You can buy")
+        API.updateUser({
+          userId: this.state.currentUser,
+          obj: res.data[0]
+        })
+      } else {
+        console.log("You don't have enough money")
+      }
+    })
   }
 
 
-  componentDidMount = () => this.setState(this.props.info)
-  // getClientFromDb = () => {
-  //   fetch('http://localhost:3000/api/clients')
-  //     .then((data) => data.json())
-  //     .then((res) => this.setState({ clients: res.data }));
-  // };
+
+
+
+  // API.updateUser(userId, objectId)
+
+
+  componentDidMount = () => {
+    this.setState(this.props.info)
+    //Check the user is the one he says it is
+    API.getUserId({ id: "5d5c33316e8643b0d5980c86" })
+      .then(data =>
+        this.setState({ currentUser: data.data[0] })
+      )
+  };
 
   componentDidUpdate = () => console.log(this.state)
-
-  // getObjectFromDb = () => {
-  //   fetch('http://localhost:3000/api/objects')
-  //     .then((data) => data.json())
-  //     .then((res) => this.setState({ objects: res.data }));
-  // };
 
   render() {
     return (
@@ -69,7 +76,7 @@ class Products extends Component {
         })}
 
         {this.state.objects.map(object => {
-          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick(object.points)}>
+          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
           </Card>
         })}
 

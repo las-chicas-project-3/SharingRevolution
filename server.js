@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 3001;
 app.use(morgan("combined"));
 
 const passport= require("passport")
-const User = require("./routes");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -34,7 +33,6 @@ require("./config/passport")(passport);
 // Routes
 
 //app.use("/", User);
-app.use("/api/users", User);
 
 
 // Add routes, both API and view
