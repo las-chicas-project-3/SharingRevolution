@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 var morgan = require('morgan');
 const routes = require("./routes");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 app.use(morgan("combined"));
@@ -32,13 +33,18 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
+
+//app.use("/", User);
 app.use("/api/users", User);
+
 
 // Add routes, both API and view
 app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SharingRevolution");
+
+
 
 
 // app.get("/api/user", function (req, res) {

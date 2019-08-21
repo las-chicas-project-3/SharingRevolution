@@ -6,6 +6,7 @@ const keys = require("../../config/keys");
 // Load input validation
 const validateRegisterInput = require("../../client/src/pages/Signup");
 const validateLoginInput = require("../../client/src/pages/Login");
+
 // Load User model
 const User = require("../../models/user");
 
@@ -31,6 +32,7 @@ router.put("/update/:id/:result", (req, res) => {
       res.json(err);
     })
 });
+
 
 // @route POST api/users/register
 // @desc Register user
@@ -117,5 +119,6 @@ router.post("/login", (req, res) => {
         });
     });
 });
+
 
 module.exports = router;

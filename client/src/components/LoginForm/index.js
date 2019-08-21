@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import "./style.css";
 
 class LoginForm extends Component {
-  state = {
+  constructor() {
+    super();
+  this.state = {
     email: "",
-    password: "",
+    password: ""
   };
-
+  }
   handleInputChange = name => event => {
     const { value } = event.target;
     this.setState({
@@ -16,12 +18,12 @@ class LoginForm extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.email === "" || this.state.password === "") {
-      return alert("You must provide your email and password.")
-    }
-    if (this.state.password.length < 6) {
-      return alert("Your password must be at least 6 characters long.")
-    }
+    // if (this.state.email === "" || this.state.password === "") {
+    //   return alert("You must provide your email and password.")
+    // }
+    // if (this.state.password.length < 6) {
+    //   return alert("Your password must be at least 6 characters long.")
+    // }
 
     this.setState({
       email: "",

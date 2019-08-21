@@ -12,7 +12,9 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "seed": "node seed/seedDB.js"
+    "seed": "node seed/seedDB.js",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
