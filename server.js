@@ -32,7 +32,7 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
-app.use("/", Client);
+app.use("/", User);
 
 // Add routes, both API and view
 //app.use(routes);
