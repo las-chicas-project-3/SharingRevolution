@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Card from "../components/Card";
+import API from "../utils/API"
 
 
 class Products extends Component {
@@ -12,7 +13,22 @@ class Products extends Component {
     objects: []
   }
 
+  //This.props.user will be updated with the current user that is log in
+  buyOnClick = (price) => (event) => {
+    event.preventDefault();
+    
+    var userPoints = this.props.info.user[0].points
+    var userId = this.props.info.user[0]._id
+    var result = userPoints - price
 
+    console.log("userId =" + userId)
+    console.log("Price of the product = " + price)
+    console.log("Points of the user = " + this.props.info.user[0].points)
+    console.log(userPoints + "-" + price + "=" + result)
+
+
+    API.updateUser({ userId, result })
+  }
 
 
   componentDidMount = () => this.setState(this.props.info)
@@ -30,11 +46,6 @@ class Products extends Component {
   //     .then((res) => this.setState({ objects: res.data }));
   // };
 
-  handleOnClick = () => {
-    console.log(this.id)
-    console.log("clicked")
-  }
-
   render() {
     return (
       <div>
@@ -51,17 +62,18 @@ class Products extends Component {
             </Col>
           </Row>
         </Container>
-      {this.state.users.map(user=>{
-        return <Card user={user} key={user._id}>
-        </Card>
-      })}
+        {this.state.users.map(user => {
+          return <Card user={user} key={user._id}>
 
-      {this.state.objects.map(object=>{
-        return <Card product={object} key={object._id} id={object._id} onClick={this.handleOnClick()}>
-        </Card>
-      })}
-      
-    </div>
+          </Card>
+        })}
+
+        {this.state.objects.map(object => {
+          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick(object.points)}>
+          </Card>
+        })}
+
+      </div>
     );
   }
 }
