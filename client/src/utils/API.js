@@ -18,8 +18,15 @@ export default {
   },
   registerUser: function(user){
     return axios.post("/api/user/register", user).then(res => {return res.data})
+    .catch(err=>{
+      console.log(err)
+      throw err
+    })
   },
   login: function(user){
-    return axios.post('/api/user/login', user).then(res=> {return res.data})
+    return axios.post('/api/user/login', user).then(res=> {return res.data}).catch(err=>{
+      console.log(err)
+      throw err
+    })
   }
 }

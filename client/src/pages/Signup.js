@@ -45,7 +45,11 @@ class Register extends Component {
       password2: this.state.password2
     };
     console.log(newUser);
-    API.registerUser(newUser); 
+    API.registerUser(newUser).then(res=> {console.log(res)
+      window.location.replace("/products")}).catch(e=>{
+        console.log(e)
+        alert(`heres the error ${e}`)
+        window.location.replace('/signup')})
   };
 
   render() {
