@@ -57,9 +57,6 @@ class Products extends Component {
           </JumboTron>
         })}
 
-        {/* <JumboTron name="Joyce" points="30" /> */}
-
-
         <Container style={{ marginTop: 30 }}>
           <Row>
             <Col size="md-12">
