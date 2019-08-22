@@ -11,18 +11,30 @@ class Products extends Component {
   state = {
     users: [],
     objects: [],
-
-    currentUser:[],
+    currentUser: [],
     objectPrice: 0,
     userPoints: 0
   }
 
+  // API.updateUser(userId, objectId)
+
+
+  componentDidMount = () => {
+    this.setState(this.props.info)
+    //Check the user is the one he says it is
+    API.getUserId({ id: "5d5ec34841fdf20d1ddec2ac" })
+      .then(data =>
+        this.setState({ currentUser: data.data[0] })
+      )
+  };
 
   buyOnClick = (event) => {
     event.preventDefault();
     // Ask the user if he wants to do it
     API.getObjectId(event.target.id).then(res => {
- 
+      console.log(res.data[0].points)
+      console.log("Current User: " + this.state.currentUser)
+
       if (res.data[0].points < this.state.currentUser.points) {
         console.log("You can buy")
         API.updateUser({
@@ -34,22 +46,6 @@ class Products extends Component {
       }
     })
   }
-
-
-
-
-
-  // API.updateUser(userId, objectId)
-
-
-  componentDidMount = () => {
-    this.setState(this.props.info)
-    //Check the user is the one he says it is
-    API.getUserId({ id: "5d5c33316e8643b0d5980c86" })
-      .then(data =>
-        this.setState({ currentUser: data.data[0] })
-      )
-  };
 
   componentDidUpdate = () => console.log(this.state)
 
