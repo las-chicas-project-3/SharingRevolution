@@ -12,7 +12,7 @@ class Products extends Component {
     users: [],
     objects: [],
 
-    currentUser: "",
+    currentUser:[],
     objectPrice: 0,
     userPoints: 0
   }
