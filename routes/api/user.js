@@ -42,7 +42,7 @@ router.put("/update", (req, res) => {
     console.log("Result ")
     console.log(result)
 
-    User.update({ _id: req.params.id }, { $set: { points: result } })
+    User.update({ _id: req.body.userId.userId._id }, { $set: { points: result } })
         .then(function (dbUser) {
             console.log(dbUser)
             res.json(dbUser);
