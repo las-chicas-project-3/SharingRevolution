@@ -20,7 +20,7 @@ class Products extends Component {
   componentDidMount = () => {
     this.setState(this.props.info)
     //Check the user is the one he says it is
-    API.getUserId({ id: "5d5f10f8d2f9fcd368fd1022"})
+    API.getUserId({ id: "5d60211cde88acdfd1f07dbd"})
       .then(data =>
         this.setState({ currentUser: data.data[0] }),
       )
@@ -55,7 +55,7 @@ class Products extends Component {
 
         <JumboTron name={this.state.currentUser.name} points={this.state.currentUser.points}>
           </JumboTron>
-        })}
+      
 
         <Container style={{ marginTop: 30 }}>
           <Row>
