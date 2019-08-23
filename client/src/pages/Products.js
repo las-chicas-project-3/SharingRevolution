@@ -20,7 +20,7 @@ class Products extends Component {
   componentDidMount = () => {
     this.setState(this.props.info)
     //Check the user is the one he says it is
-    API.getUserId({ id: "5d6021d50b5d87dfe76dc533"})
+    API.getUserId({ id: "5d6034f162d60c1f88f489bf" })
       .then(data =>
         this.setState({ currentUser: data.data[0] }),
       )
@@ -36,7 +36,7 @@ class Products extends Component {
         API.updateUser({
           userId: this.state.currentUser,
           obj: res.data[0]
-        }).then (function(){
+        }).then(function () {
           window.location.reload()
         })
       } else {
@@ -51,29 +51,21 @@ class Products extends Component {
     return (
       <div>
         <People />
-
         <JumboTron name={this.state.currentUser.name} points={this.state.currentUser.points}>
-          </JumboTron>
-      
+        </JumboTron>
+  
+        <Row>
+          {this.state.users.map(user => {
+            return <Card user={user} key={user._id}>
 
-        <Container style={{ marginTop: 30 }}>
-          <Row>
-            <Col size="md-12">
-              <h1>Our current products:</h1>
-            </Col>
-          </Row>
-        </Container>
+            </Card>
+          })}
 
-        {this.state.users.map(user => {
-          return <Card user={user} key={user._id}>
-
-          </Card>
-        })}
-
-        {this.state.objects.map(object => {
-          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
-          </Card>
-        })}
+          {this.state.objects.map(object => {
+            return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
+            </Card>
+          })}
+        </Row>
 
 
       </div>

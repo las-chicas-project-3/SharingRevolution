@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
 import API from "../utils/API";
+
 class Login extends Component {
   constructor() {
     super();
@@ -14,7 +15,7 @@ class Login extends Component {
       errors: {}
     };
   }
-    componentDidMount =() => {
+  componentDidMount = () => {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
@@ -26,7 +27,7 @@ class Login extends Component {
       this.props.history.push("/dashboard");
       // push user to dashboard when they login
     }
-if (nextProps.errors) {
+    if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
@@ -43,11 +44,14 @@ if (nextProps.errors) {
       password: this.state.password
     };
     console.log(userData);
-    API.login(userData).then(res=> {console.log(res)
-      window.location.replace("/products")}).catch(e=>{
-        console.log(e)
-        alert(`heres the error ${e}`)
-        window.location.replace('/login')})
+    API.login(userData).then(res => {
+      console.log(res)
+      window.location.replace("/products")
+    }).catch(e => {
+      console.log(e)
+      alert(`heres the error ${e}`)
+      window.location.replace('/login')
+    })
   };
 
   render() {
@@ -57,8 +61,7 @@ if (nextProps.errors) {
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
             <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
+              Back to home
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>

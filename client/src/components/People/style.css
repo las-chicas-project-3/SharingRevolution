@@ -1,5 +1,5 @@
 .people {
-  height: 500px;
+  height: 1000px;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -8,7 +8,7 @@
 .people::after {
   content: "";
   display: block;
-  opacity: .4;
+  opacity: 0.4;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -21,7 +21,8 @@
   z-index: 2;
 }
 
-.people h1, .people h2 {
+.people h1,
+.people h2 {
   color: white;
 }
 

@@ -13,8 +13,9 @@ function Card(props) {
   } else {
     return (
       <div className="card" key={props.product.key}>
-        <h1>product name : {props.product.name}</h1>
-        <h1>price : {props.product.points}</h1>
+        <h1>Product Name: {props.product.name}</h1><br />
+        <img src={props.product.image} /><br />
+        <p>Price: {props.product.points}</p>
         <BuyButton price={props.product.points} id={props.product._id} onClick={props.onClick}/>
       </div>
     )

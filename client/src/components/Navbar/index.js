@@ -24,21 +24,21 @@ function Navbar() {
               : "nav-link"
             }
           >
-            Products
+            PRODUCTS • 
           </Link>
       </li>
           <li className="nav-item">
           <Link
             to="/signup"
             className={window.location.pathname === "/signup" ? "nav-link active" : "nav-link"}
-          >Sign Up</Link>
+          >SIGN UP • </Link> 
           </li>
           <li className="nav-item">
           <Link
             to="/login"
             className={window.location.pathname === "/login" ? "nav-link active" : "nav-link"}
           >
-             Log In</Link>
+             LOGIN</Link>
           </li>
       </ul>
   </div>
