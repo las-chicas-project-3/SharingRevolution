@@ -20,7 +20,7 @@ class Products extends Component {
   componentDidMount = () => {
     this.setState(this.props.info)
     //Check the user is the one he says it is
-    API.getUserId({ id: "5d60211cde88acdfd1f07dbd"})
+    API.getUserId({ id: "5d6021d50b5d87dfe76dc533"})
       .then(data =>
         this.setState({ currentUser: data.data[0] }),
       )
@@ -30,20 +30,19 @@ class Products extends Component {
   buyOnClick = (event) => {
     event.preventDefault();
     // Ask the user if he wants to do it
-    console.log("this.state.currentUser")
-    console.log(this.state.currentUser)
     API.getObjectId(event.target.id).then(res => {
       if (res.data[0].points <= this.state.currentUser.points) {
         alert("You can buy")
         API.updateUser({
           userId: this.state.currentUser,
           obj: res.data[0]
+        }).then (function(){
+          window.location.reload()
         })
       } else {
         alert("You don't have enough money")
       }
     })
-    window.location.reload()
   }
 
   componentDidUpdate = () => console.log(this.state)
