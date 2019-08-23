@@ -46,7 +46,7 @@ class Register extends Component {
     };
     console.log(newUser);
     API.registerUser(newUser).then(res=> {console.log(res)
-      window.location.replace("/products")}).catch(e=>{
+      window.location.replace("/login")}).catch(e=>{
         console.log(e)
         alert(`heres the error ${e}`)
         window.location.replace('/signup')})

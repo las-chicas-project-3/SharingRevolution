@@ -11,6 +11,8 @@ export default {
     return axios.get("/api/object/info/" + objectId)
   },
   updateUser: function (userId, obj) {
+    console.log("User ID: " + userId)
+    console.log("User ID: " + obj)
     return axios.put("/api/user/update/", {userId, obj:obj})
   },
   getObject: function () {
