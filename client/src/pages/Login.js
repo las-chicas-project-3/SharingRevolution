@@ -32,10 +32,11 @@ class Login extends Component {
       });
     }
   }
-  //indow.location.replace("/products")
+  
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+  
   onSubmit = e => {
     e.preventDefault();
     const userData = {
@@ -43,15 +44,15 @@ class Login extends Component {
       password: this.state.password
     };
     console.log(userData);
-    API.login(userData).then(res => {
-      console.log(res)
-      window.location.replace('/products')
-    }).catch(e => {
-      console.log(e)
-      alert(`heres the error ${e}`)
-      // window.location.replace('/login')
-    }
-    )
+    // API.login(userData).then(res => {
+    //   console.log(res)
+    //   window.location.replace('/products')
+    // }).catch(e => {
+    //   console.log(e)
+    //   alert(`heres the error ${e}`)
+    //   // window.location.replace('/login')
+    // }
+    // )
   };
 
   render() {
@@ -60,10 +61,6 @@ class Login extends Component {
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Login</b> below

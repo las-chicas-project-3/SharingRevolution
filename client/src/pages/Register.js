@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../actions/authActions";
 import classnames from "classnames";
-import API from "./../utils/API"
-import { loginUser } from "./../actions/authActions"
+import API from "../utils/API"
+import { loginUser } from "../actions/authActions"
 
 class Register extends Component {
   constructor() {
@@ -33,7 +33,6 @@ class Register extends Component {
     }
   }
 
-
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -51,7 +50,6 @@ class Register extends Component {
       window.location.replace("/login")
     }).catch(e => {
       console.log(e)
-      alert(`heres the error ${e}`)
       window.location.replace('/signup')
     })
     this.props.signup(newUser).then(data => {
@@ -65,10 +63,6 @@ class Register extends Component {
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
-              <i className="material-icons left">keyboard_backspace</i> Back to
-              home
-            </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Register</b> below
@@ -90,7 +84,7 @@ class Register extends Component {
                   })}
                 />
                 <label htmlFor="name">Name</label>
-                <span className="red-text">{errors.name}</span>
+                {/* <span className="alert alert-primary">{errors.name}</span> */}
               </div>
               <div className="input-field col s12">
                 <input
@@ -104,7 +98,7 @@ class Register extends Component {
                   })}
                 />
                 <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                {/* <span className="alert alert-primary">{errors.email}</span> */}
               </div>
               <div className="input-field col s12">
                 <input
@@ -118,7 +112,7 @@ class Register extends Component {
                   })}
                 />
                 <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
+                {/* <span className="alert alert-primary">{errors.password}</span> */}
               </div>
               <div className="input-field col s12">
                 <input
@@ -132,7 +126,7 @@ class Register extends Component {
                   })}
                 />
                 <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
+                {/* <span className="alert alert-primary">{errors.password2}</span> */}
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
