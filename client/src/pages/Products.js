@@ -15,10 +15,16 @@ class Products extends Component {
     user: []
   }
 
-  componentDidMount = () => {
-    console.log(this.props)
-  };
 
+
+  componentDidMount = () => {
+    this.setState(this.props.info)
+    //Check the user is the one he says it is
+    API.getUserId({ id: "5d60aef5498f1aebb7ac0829" })
+      .then(data =>
+        this.setState({ currentUser: data.data[0] }),
+      )
+  }
 
   buyOnClick = (event) => {
     event.preventDefault();

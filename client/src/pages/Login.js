@@ -45,7 +45,7 @@ if (nextProps.errors) {
     console.log(userData);
     API.login(userData).then(res=>{
       console.log(res)
-    // window.location.replace('/products')
+    window.location.replace('/products')
     }).catch(e=>{
         console.log(e)
         alert(`heres the error ${e}`)
