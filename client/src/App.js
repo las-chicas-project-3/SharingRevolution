@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { setCurrentUser, logoutUser, registerUser, loginUser } from "./actions/authActions";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 // import Signup from "./components/auth/Register"; --JB coded out 906pm
@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/Dashboard/dashboard";
+
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -39,26 +40,47 @@ if (localStorage.jwtToken) {
 class App extends Component {
 
   state = {
-    clients: [],
-    objects: []
+    users: [],
+    objects: [],
+    user: []
   }
 
   componentDidMount() {
     this.getUserFromDb();
     this.getObjectFromDb();
+    console.log(localStorage.jwtToken)
   }
 
   componentDidUpdate(){
+    console.log(this.state.user)
   }
 
   getUserFromDb = () => {
-    API.getUser().then(res=>this.setState({user:res.data}))
+    API.getUser().then(res=>this.setState({users:res.data}))
   };
 
 
   getObjectFromDb = () => {
     API.getObject().then(res=>this.setState({objects:res.data}))
   };
+
+  login = (userData)=>{
+    // return API.login(input).then(res=> {
+    //   this.setState({user:res.user})
+    //   console.log(res)
+    //   return res}
+    // ).catch(err=>{
+    //   console.log(err)
+    //   throw err
+    // })
+    
+  }
+
+  signup = (userData)=>{
+    return registerUser(userData).then(data=>{
+      console.log(data)
+      return data})
+  }
 
   render() {
     return (
@@ -68,11 +90,11 @@ class App extends Component {
           <Navbar />
           <Wrapper>
             <Route exact path="/" component={Home} />
-            <Route exact path="/products" component={() => <Products info={this.state} />}/>
-            <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
+            <Route exact path="/products" component={(props) => <Products {...props} info={this.state} />}/>
+    <Route exact path="/signup" component={(props)=><Signup {...props} signup={this.signup}/>} />
+            <Route exact path="/login" component={() =><Login login={this.login}/>} />
           <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </Wrapper>
           <Footer />

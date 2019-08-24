@@ -10,20 +10,13 @@ import JumboTron from "../components/JumbotronUser";
 
 class Products extends Component {
   state = {
-    users: [],
     objects: [],
-    currentUser: [],
-    objectPrice: 0,
-    userPoints: 0
+    users: [],
+    user: []
   }
 
   componentDidMount = () => {
-    this.setState(this.props.info)
-    //Check the user is the one he says it is
-    API.getUserId({ id: "5d6021d50b5d87dfe76dc533"})
-      .then(data =>
-        this.setState({ currentUser: data.data[0] }),
-      )
+    console.log(this.props)
   };
 
 
@@ -36,7 +29,7 @@ class Products extends Component {
         API.updateUser({
           userId: this.state.currentUser,
           obj: res.data[0]
-        }).then (function(){
+        }).then(function () {
           window.location.reload()
         })
       } else {
@@ -52,9 +45,9 @@ class Products extends Component {
       <div>
         <People />
 
-        <JumboTron name={this.state.currentUser.name} points={this.state.currentUser.points}>
-          </JumboTron>
-      
+        <JumboTron name={"stranger"} points={"1000000"}>
+        </JumboTron>
+
 
         <Container style={{ marginTop: 30 }}>
           <Row>

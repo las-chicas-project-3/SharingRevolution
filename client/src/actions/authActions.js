@@ -7,38 +7,42 @@ import {
   USER_LOADING
 } from "./types";
 // Register User
-export const registerUser = (userData, history) => dispatch => {
-  axios
-    .post("/api/users/register", userData)
-    .then(res => history.push("/login")) // re-direct to login on successful register
+export const registerUser = (userData)  => {
+  console.log(userData)
+  return axios
+    .post("/api/user/register", userData)
+    .then(res => { return res.data}) // re-direct to login on successful register
     .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
+      console.log(err)
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+    // )}
+    )};
 // Login - get user token
-export const loginUser = userData => dispatch => {
+export const loginUser = userData  => {
   axios
-    .post("/api/users/login", userData)
+    .post("/api/user/login", userData)
     .then(res => {
       // Save to localStorage
 // Set token to localStorage
       const { token } = res.data;
+      console.log(token)
       localStorage.setItem("jwtToken", token);
       // Set token to Auth header
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
       // Set current user
-      dispatch(setCurrentUser(decoded));
+      // dispatch(setCurrentUser(decoded));
+      // console.log(decoded)
     })
     .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+      // })
+      console.log(err)
     );
 };
 // Set logged in user

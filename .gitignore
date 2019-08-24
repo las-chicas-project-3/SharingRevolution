@@ -315,6 +315,9 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+# Build folder
+build/
+
 # OpenCover UI analysis results
 OpenCover/
 

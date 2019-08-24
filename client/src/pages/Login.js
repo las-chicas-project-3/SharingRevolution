@@ -18,9 +18,9 @@ class Login extends Component {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
-
     }
   }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
@@ -32,7 +32,7 @@ if (nextProps.errors) {
       });
     }
   }
-
+//indow.location.replace("/products")
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -43,11 +43,15 @@ if (nextProps.errors) {
       password: this.state.password
     };
     console.log(userData);
-    API.login(userData).then(res=> {console.log(res)
-      window.location.replace("/products")}).catch(e=>{
+    API.login(userData).then(res=>{
+      console.log(res)
+    // window.location.replace('/products')
+    }).catch(e=>{
         console.log(e)
         alert(`heres the error ${e}`)
-        window.location.replace('/login')})
+        // window.location.replace('/login')
+      }
+        )
   };
 
   render() {

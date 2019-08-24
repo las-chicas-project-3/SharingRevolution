@@ -12,7 +12,8 @@ export default {
   },
   updateUser: function (userId, obj) {
     console.log("User ID: " + userId)
-    console.log("User ID: " + obj)
+    console.log("User ID: " + userId)
+
     return axios.put("/api/user/update/", {userId, obj:obj})
   },
   getObject: function () {
@@ -26,7 +27,15 @@ export default {
     })
   },
   login: function(user){
-    return axios.post('/api/user/login', user).then(res=> {return res.data}).catch(err=>{
+    return axios.post('/api/user/login', user, {withCredentials: true}).then(res=> {return res.data}).catch(err=>{
+      console.log(err)
+      throw err
+    })
+  },
+  getCurrentUser: function(){
+    return axios.get('/api/user/current').then(res=>{
+      return res.data
+    }).catch(err=>{
       console.log(err)
       throw err
     })

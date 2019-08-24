@@ -5,17 +5,17 @@ const morgan = require('morgan');
 const routes = require("./routes");
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 8080;
 app.use(morgan("combined"));
 
-const passport= require("passport")
+var passport = require("./config/passport");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("user/build"));
+  app.use(express.static("client/build"));
 }
 
 // Bodyparser middleware
@@ -28,8 +28,8 @@ app.use(bodyParser.json());
 
 // Passport middleware
 app.use(passport.initialize());
+app.use(passport.session());
 // Passport config
-require("./config/passport")(passport);
 // Routes
 
 //app.use("/", User);
