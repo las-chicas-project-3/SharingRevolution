@@ -20,7 +20,7 @@ class Products extends Component {
   componentDidMount = () => {
     this.setState(this.props.info)
     //Check the user is the one he says it is
-    API.getUserId({ id: "5d6034f162d60c1f88f489bf" })
+    API.getUserId({ id: "5d615e975770b6443115c817" })
       .then(data =>
         this.setState({ currentUser: data.data[0] }),
       )

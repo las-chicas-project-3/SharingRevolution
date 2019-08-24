@@ -9,7 +9,7 @@ function Navbar() {
   <div class="d-flex flex-grow-1">
       <span class="w-100 d-lg-none d-block"></span>
              <Link className="navbar-brand d-none d-lg-inline-block" to="/">
-          Lieren
+          Sharing Revolution
           </Link>
    </div>
 
