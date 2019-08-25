@@ -101,12 +101,6 @@ class App extends Component {
 
   // }
 
-  // signup = (userData) => {
-  //   return registerUser(userData).then(data => {
-  //     console.log(data)
-  //     return data
-  //   })
-  // }
 
   render() {
     return (
