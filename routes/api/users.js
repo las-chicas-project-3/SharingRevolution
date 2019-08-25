@@ -46,13 +46,9 @@ router.put("/update", (req, res) => {
     const objectCurrentPoints = obj.points
     const result = userCurrentPoints - objectCurrentPoints
 
-    console.log("Request ")
-    console.log(req.body)
-     
 
-    User.update({ _id: user.id }, { $set: { points: result } })
+    User.findOneAndUpdate({ _id: user._id }, { $set: { points: result } })
         .then(function (dbUser) {
-            console.log(dbUser)
             res.json(dbUser);
 
         })
@@ -63,9 +59,6 @@ router.put("/update", (req, res) => {
 });
 
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
 router.post("/register", (req, res) => {
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);

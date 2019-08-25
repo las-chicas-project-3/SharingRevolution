@@ -15,29 +15,36 @@ class Dashboard extends Component {
 
   state = {
     objects: [],
-    result: 0
+    userLogIn: [],
+    userLogInID: "",
+    userLogInPoints: 0
   }
 
   componentDidMount() {
     this.getObjectFromDb();
-    this.getUserPointsFromDB()
+    this.getUserFromDB()
   }
-
 
   getObjectFromDb = () => {
     API.getObject().then(res => this.setState({ objects: res.data }))
   };
 
-  getUserPointsFromDB = () => {
+  getUserFromDB = () => {
+    this.setState({ userLogInID: this.props.auth.user.id })
+    this.setState({ userLogInPoints: this.props.auth.user.points })
+
     API.getUserId(this.props.auth.user.id).then(res => {
-      this.setState({ result: res.data[0].points })
+      this.setState({
+        userLogIn: res.data[0],
+        userLogInPoints:res.data[0].points
+      })
     })
+
   };
 
   componentDidUpdate = () => {
-    console.log(this.state.points)
+    console.log(this.state)
   }
-
 
 
   onLogoutClick = e => {
@@ -47,27 +54,24 @@ class Dashboard extends Component {
 
   buyOnClick = (event) => {
     event.preventDefault();
-    const userCurrent = this.props.auth.user
+
+    const userCurrent = this.state.userLogIn
     const objId = event.target.id
 
-
-    console.log(userCurrent.id)
-    // Ask the user if he wants to do it
     API.getObjectId(objId).then(res => {
       if (res.data[0].points <= userCurrent.points) {
-        alert("You can buy")
         let result = userCurrent.points - res.data[0].points
-        this.setState({ result: result })
+        this.setState({ userLogInPoints: result })
         API.updateUser({
           user: userCurrent,
           obj: res.data[0]
+        }).then(function (res) {
+          window.location.reload()
+          // API.getUserId(userCurrent.id).then(res => {
+            console.log(res)
+            // this.setState({ points: res.data[0].points })
+          //  })
         })
-        // .then(function () {
-        //   API.getUserId(userCurrent.id).then(res => {
-        //     console.log(res)
-        //     // this.setState({ points: res.data[0].points })
-        //    })
-        // })
       } else {
         alert("You don't have enough money")
       }
@@ -94,7 +98,7 @@ class Dashboard extends Component {
         >
           Logout
             </button>
-        <JumboTron name={user.name.split(" ")[0]} points={this.state.result}>
+        <JumboTron name={user.name.split(" ")[0]} points={this.state.userLogInPoints}>
         </JumboTron>
 
         <Row>
