@@ -12,7 +12,8 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      id: ""
     };
   }
   componentDidMount = () => {
@@ -45,7 +46,6 @@ class Login extends Component {
     };
     console.log(userData);
     API.login(userData).then(res => {
-      console.log(res)
       window.location.replace("/products")
     }).catch(e => {
       console.log(e)
@@ -68,7 +68,7 @@ class Login extends Component {
                 <b>Login</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
+                Don't have an account? <Link to="/signup">Register</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>

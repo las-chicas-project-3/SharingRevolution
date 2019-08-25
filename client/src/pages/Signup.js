@@ -18,19 +18,19 @@ class Register extends Component {
     };
   }
 
-  componentDidMount =() => {
+  componentDidMount = () => {
     // If logged in and user navigates to Register page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
   }
-    componentWillReceiveProps(nextProps) {
-      if (nextProps.errors) {
-        this.setState({
-          errors: nextProps.errors
-        });
-      }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
+  }
 
 
   onChange = e => {
@@ -45,11 +45,14 @@ class Register extends Component {
       password2: this.state.password2
     };
     console.log(newUser);
-    API.registerUser(newUser).then(res=> {console.log(res)
-      window.location.replace("/login")}).catch(e=>{
-        console.log(e)
-        alert(`heres the error ${e}`)
-        window.location.replace('/signup')})
+    API.registerUser(newUser).then(res => {
+      console.log(res)
+      window.location.replace("/login")
+    }).catch(e => {
+      console.log(e)
+      alert(`heres the error ${e}`)
+      window.location.replace('/signup')
+    })
   };
 
   render() {

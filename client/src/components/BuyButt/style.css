@@ -1,15 +1,15 @@
 .btn {
   float: right;
-  background: #0433FF;
-  color: #8EFFF9;
-  width: 200px;
+  background: #0433ff;
+  color: #8efff9;
+  width: 300px;
   margin: auto;
   font-size: 50px;
 }
 .btn:hover {
   float: right;
-  background: #8EFFF9;
-  color: #0433FF;
+  background: #8efff9;
+  color: #0433ff;
 }
 .delete-btn {
   float: right;
