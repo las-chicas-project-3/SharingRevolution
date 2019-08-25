@@ -29,7 +29,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// Routes
 app.use("/api/users", users);
 app.use("/api/object", object);
 
