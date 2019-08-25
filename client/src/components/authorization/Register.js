@@ -85,7 +85,8 @@ class Register extends Component {
                                     })}
                                 />
                                 <label htmlFor="name">Name</label>
-                                <span className="red-text">{errors.name}</span>
+                                <div style={{ color: "red" }} className="red-text">
+                                {errors.name}</div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -98,8 +99,9 @@ class Register extends Component {
                                         invalid: errors.email
                                     })}
                                 />
-                                <span className="red-text">{errors.email}</span>
                                 <label htmlFor="email">Email</label>
+                                <div style={{ color: "red" }} className="red-text">
+                                {errors.email}</div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -114,7 +116,8 @@ class Register extends Component {
 
                                 />
                                 <label htmlFor="password">Password</label>
-                                <span className="red-text">{errors.password}</span>
+                                <div style={{ color: "red" }} className="red-text">
+                                {errors.password}</div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -128,7 +131,8 @@ class Register extends Component {
                                     })}
                                 />
                                 <label htmlFor="password2">Confirm Password</label>
-                                <span className="red-text">{errors.password2}</span>
+                                <div style={{ color: "red" }} className="red-text">
+                                {errors.password2}</div>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                 <button

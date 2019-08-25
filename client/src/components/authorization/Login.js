@@ -45,7 +45,6 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(userData);
         this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
     };
 
@@ -80,10 +79,10 @@ class Login extends Component {
                                     })}
                                 />
                                 <label htmlFor="email">Email</label>
-                                <span className="red-text">
+                                <div style={{ color: "red" }} className="red-text">
                                     {errors.email}
                                     {errors.emailnotfound}
-                                </span>
+                                </div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -97,10 +96,10 @@ class Login extends Component {
                                     })}
                                 />
                                 <label htmlFor="password">Password</label>
-                                <span className="red-text">
+                                <div style={{ color: "red" }} className="red-text">
                                     {errors.password}
                                     {errors.passwordincorrect}
-                                </span>
+                                </div>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                 <button
@@ -141,5 +140,3 @@ export default connect(
     { loginUser }
 )(Login);
 
-
-//export default Login;
