@@ -14,17 +14,30 @@ import JumboTron from "../JumbotronUser";
 class Dashboard extends Component {
 
   state = {
-    objects: []
+    objects: [],
+    result: 0
   }
 
   componentDidMount() {
     this.getObjectFromDb();
+    this.getUserPointsFromDB()
   }
 
 
   getObjectFromDb = () => {
     API.getObject().then(res => this.setState({ objects: res.data }))
   };
+
+  getUserPointsFromDB = () => {
+    API.getUserId(this.props.auth.user.id).then(res => {
+      this.setState({ result: res.data[0].points })
+    })
+  };
+
+  componentDidUpdate = () => {
+    console.log(this.state.points)
+  }
+
 
 
   onLogoutClick = e => {
@@ -37,22 +50,30 @@ class Dashboard extends Component {
     const userCurrent = this.props.auth.user
     const objId = event.target.id
 
+
+    console.log(userCurrent.id)
     // Ask the user if he wants to do it
     API.getObjectId(objId).then(res => {
-      console.log(res)
       if (res.data[0].points <= userCurrent.points) {
         alert("You can buy")
-            API.updateUser({
-              user: userCurrent,
-              obj: res.data[0]
-            })
-        //     .then(function () {
-        // //       window.location.reload()
-        // //     })
+        let result = userCurrent.points - res.data[0].points
+        this.setState({ result: result })
+        API.updateUser({
+          user: userCurrent,
+          obj: res.data[0]
+        })
+        // .then(function () {
+        //   API.getUserId(userCurrent.id).then(res => {
+        //     console.log(res)
+        //     // this.setState({ points: res.data[0].points })
+        //    })
+        // })
       } else {
         alert("You don't have enough money")
       }
     })
+
+
   }
 
 
@@ -73,7 +94,7 @@ class Dashboard extends Component {
         >
           Logout
             </button>
-        <JumboTron name={user.name.split(" ")[0]} points={user.points}>
+        <JumboTron name={user.name.split(" ")[0]} points={this.state.result}>
         </JumboTron>
 
         <Row>

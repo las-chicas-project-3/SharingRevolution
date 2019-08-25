@@ -2,20 +2,16 @@ import axios from 'axios';
 
 export default {
   getUser: function () {
-    return axios.get("/api/user/info")
+    return axios.get("/api/users/info")
   },
-  getUserId: function (userId) {
-    return axios.get("/api/user/info/" + userId.id)
+  getUserId: function (id) {
+    console.log(id)
+    return axios.get("/api/users/info/" + id)
   },
   getObjectId: function (objectId) {
     return axios.get("/api/object/info/" + objectId)
   },
   updateUser: function (info) {
-    // console.log("info user: " )
-    // console.log( info.user)
-    // console.log("info Obj " )
-    // console.log( info.obj)
-
     return axios.put("/api/users/update", info)
   },
   getObject: function () {
