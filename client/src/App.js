@@ -5,7 +5,6 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
-// import Signup from "./components/auth/Register"; --JB coded out 906pm
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
@@ -26,7 +25,7 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-// Check for expired token
+  // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
   if (decoded.exp < currentTime) {
     // Logout user
@@ -48,36 +47,36 @@ class App extends Component {
     this.getObjectFromDb();
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
   }
 
   getUserFromDb = () => {
-    API.getUser().then(res=>this.setState({user:res.data}))
+    API.getUser().then(res => this.setState({ user: res.data }))
   };
 
 
   getObjectFromDb = () => {
-    API.getObject().then(res=>this.setState({objects:res.data}))
+    API.getObject().then(res => this.setState({ objects: res.data }))
   };
 
   render() {
     return (
       <Provider store={store}>
-      <Router>
-        <div>
-          <Navbar />
-          <Wrapper>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/products" component={() => <Products info={this.state} />}/>
-            <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Login} />
-          <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
-          </Wrapper>
-          <Footer />
-        </div>
-      </Router>
+        <Router>
+          <div>
+            <Navbar />
+            <Wrapper>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/products" component={() => <Products info={this.state} />} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/login" component={Login} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+            </Wrapper>
+            <Footer />
+          </div>
+        </Router>
       </Provider>
     );
   }

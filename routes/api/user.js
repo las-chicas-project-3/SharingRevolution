@@ -35,7 +35,7 @@ router.get("/info/:id", (req, res) => {
 });
 
 router.put("/update", (req, res) => {
-    
+
     const userCurrentPoints = req.body.userId.userId.points
     const objectCurrentPoints = req.body.userId.obj.points
     const result = userCurrentPoints - objectCurrentPoints

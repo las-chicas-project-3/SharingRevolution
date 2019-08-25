@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import People from "../components/People";
-// import Container from "../components/Container";
 import Row from "../components/Row";
-// import Col from "../components/Col";
 import Card from "../components/Card";
 import API from "../utils/API"
 import JumboTron from "../components/JumbotronUser";
@@ -50,15 +48,13 @@ class Products extends Component {
     })
   }
 
-  // componentDidUpdate = () => console.log(this.state)
-
   render() {
     return (
       <div>
         <People />
         <JumboTron name={this.state.currentUser.name} points={this.state.currentUser.points}>
         </JumboTron>
-  
+
         <Row>
           {this.state.users.map(user => {
             return <Card user={user} key={user._id}>
