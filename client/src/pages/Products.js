@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import People from "../components/People";
-import Container from "../components/Container";
+// import Container from "../components/Container";
 import Row from "../components/Row";
-import Col from "../components/Col";
+// import Col from "../components/Col";
 import Card from "../components/Card";
 import API from "../utils/API"
 import JumboTron from "../components/JumbotronUser";
@@ -17,10 +17,11 @@ class Products extends Component {
     userPoints: 0
   }
 
-  componentDidMount = () => {
+  componentDidMount = (res) => {
+    console.log("Res from Products.js: " + res);
     this.setState(this.props.info)
     //Check the user is the one he says it is
-    API.getUserId({ id: "5d615e975770b6443115c817" })
+    API.getUserId({ id: "5d6194980064704d823e10da" })
       .then(data =>
         this.setState({ currentUser: data.data[0] }),
       )
@@ -45,7 +46,7 @@ class Products extends Component {
     })
   }
 
-  componentDidUpdate = () => console.log(this.state)
+  // componentDidUpdate = () => console.log(this.state)
 
   render() {
     return (

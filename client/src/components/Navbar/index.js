@@ -6,8 +6,8 @@ import "./style.css";
 function Navbar() {
   return (
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="d-flex flex-grow-1">
-      <span class="w-100 d-lg-none d-block"></span>
+  <div className="d-flex flex-grow-1">
+      <span className="w-100 d-lg-none d-block"></span>
              <Link className="navbar-brand d-none d-lg-inline-block" to="/">
           Sharing Revolution
           </Link>
