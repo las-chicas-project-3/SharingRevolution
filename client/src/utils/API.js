@@ -10,11 +10,13 @@ export default {
   getObjectId: function (objectId) {
     return axios.get("/api/object/info/" + objectId)
   },
-  updateUser: function (userId, obj) {
-    console.log("User ID: " + userId)
-    console.log("User ID: " + userId)
+  updateUser: function (info) {
+    // console.log("info user: " )
+    // console.log( info.user)
+    // console.log("info Obj " )
+    // console.log( info.obj)
 
-    return axios.put("/api/user/update/", {userId, obj:obj})
+    return axios.put("/api/users/update", info)
   },
   getObject: function () {
     return axios.get("/api/object/info")

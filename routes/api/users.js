@@ -39,14 +39,18 @@ router.get("/info/:id", (req, res) => {
 
 router.put("/update", (req, res) => {
 
-    const userCurrentPoints = req.body.userId.userId.points
-    const objectCurrentPoints = req.body.userId.obj.points
+    const user = req.body.user
+    const obj = req.body.obj
+
+    const userCurrentPoints = user.points
+    const objectCurrentPoints = obj.points
     const result = userCurrentPoints - objectCurrentPoints
 
-    console.log("Result ")
-    console.log(result)
+    console.log("Request ")
+    console.log(req.body)
+     
 
-    User.update({ _id: req.body.userId.userId._id }, { $set: { points: result } })
+    User.update({ _id: user.id }, { $set: { points: result } })
         .then(function (dbUser) {
             console.log(dbUser)
             res.json(dbUser);

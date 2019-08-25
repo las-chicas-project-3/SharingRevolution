@@ -32,6 +32,30 @@ class Dashboard extends Component {
     this.props.logoutUser();
   };
 
+  buyOnClick = (event) => {
+    event.preventDefault();
+    const userCurrent = this.props.auth.user
+    const objId = event.target.id
+
+    // Ask the user if he wants to do it
+    API.getObjectId(objId).then(res => {
+      console.log(res)
+      if (res.data[0].points <= userCurrent.points) {
+        alert("You can buy")
+            API.updateUser({
+              user: userCurrent,
+              obj: res.data[0]
+            })
+        //     .then(function () {
+        // //       window.location.reload()
+        // //     })
+      } else {
+        alert("You don't have enough money")
+      }
+    })
+  }
+
+
   render() {
     const { user } = this.props.auth;
     return (
