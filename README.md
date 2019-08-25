@@ -35,4 +35,3 @@ GitHub Repository:
 
 **Roles**
 
-All files are written by ckalorkoti.
