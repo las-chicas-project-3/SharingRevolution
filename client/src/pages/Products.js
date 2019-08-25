@@ -22,9 +22,13 @@ class Products extends Component {
     this.setState(this.props.info)
     //Check the user is the one he says it is
     API.getUserId({ id: "5d6194980064704d823e10da" })
-      .then(data =>
-        this.setState({ currentUser: data.data[0] }),
-      )
+      .then(data => {
+        if (data.data[0]) {
+          this.setState({ currentUser: data.data[0] })
+        } else {
+          window.location.replace("/login");
+        }
+      })
   };
 
 
