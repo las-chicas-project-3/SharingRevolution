@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-//Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
     extended: false
