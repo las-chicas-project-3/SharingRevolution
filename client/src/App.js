@@ -10,7 +10,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import Home from "./pages/Home";
-import Products from "./pages/Products";
+//import Products from "./pages/Products";
 import Register from "./components/authorization/Register";
 import Login from "./components/authorization/Login";
 
@@ -64,30 +64,23 @@ if (localStorage.jwtToken) {
 
 class App extends Component {
 
-  state = {
-    users: [],
-    objects: [],
-    user: []
-  }
+  // state = {
+  //   objects: []
+  // }
 
-  componentDidMount() {
-    this.getUserFromDb();
-    this.getObjectFromDb();
-    console.log(localStorage.jwtToken)
-  }
+  // componentDidMount() {
+  //   this.getObjectFromDb();
+  // }
 
-  componentDidUpdate() {
-    console.log(this.state.user)
-  }
+  // componentDidUpdate() {
+  //   console.log("this.state.objects")
+  //   console.log(this.state.objects)
+  //   console.log(this.state)
+  // }
 
-  getUserFromDb = () => {
-    API.getUser().then(res => this.setState({ users: res.data }))
-  };
-
-
-  getObjectFromDb = () => {
-    API.getObject().then(res => this.setState({ objects: res.data }))
-  };
+  // getObjectFromDb = () => {
+  //   API.getObject().then(res => this.setState({ objects: res.data }))
+  // };
 
   // login = (userData) => {
   //   // return API.login(input).then(res=> {

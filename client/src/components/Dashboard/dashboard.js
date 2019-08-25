@@ -12,6 +12,21 @@ import API from "../../utils/API";
 import JumboTron from "../JumbotronUser";
 
 class Dashboard extends Component {
+
+  state = {
+    objects: []
+  }
+
+  componentDidMount() {
+    this.getObjectFromDb();
+  }
+
+
+  getObjectFromDb = () => {
+    API.getObject().then(res => this.setState({ objects: res.data }))
+  };
+
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -20,7 +35,7 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+      <div >
         <People />
         <button
           style={{
@@ -37,18 +52,14 @@ class Dashboard extends Component {
         <JumboTron name={user.name.split(" ")[0]} points={user.points}>
         </JumboTron>
 
-        <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-            </h4>
+        <Row>
+          {this.state.objects.map(object => {
+            return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
+            </Card>
+          })}
+        </Row>
 
-          </div>
-        </div>
+
       </div>
     );
   }
@@ -60,7 +71,8 @@ Dashboard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  objects: state.objects
 });
 
 export default connect(
