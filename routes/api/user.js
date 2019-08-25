@@ -9,6 +9,7 @@ const validateLoginInput = require("../../Auth/login");
 
 // Load User model
 const User = require("../../models/user");
+let payload = "";
 
 router.get("/info", (req, res) => {
     User.find({})
@@ -22,7 +23,7 @@ router.get("/info", (req, res) => {
 
 //Getting information from a particular user
 router.get("/info/:id", (req, res) => {
-    User.find({ _id: req.params.id })
+    User.find({ _id: payload.id })
         .then(function (dbUser) {
             console.log(dbUser)
             res.json(dbUser);
@@ -33,7 +34,7 @@ router.get("/info/:id", (req, res) => {
 });
 
 router.put("/update", (req, res) => {
-    
+
     const userCurrentPoints = req.body.userId.userId.points
     const objectCurrentPoints = req.body.userId.obj.points
     const result = userCurrentPoints - objectCurrentPoints
@@ -115,7 +116,7 @@ router.post("/login", (req, res) => {
             if (isMatch) {
                 // User matched
                 // Create JWT Payload
-                const payload = {
+                payload = {
                     id: user.id,
                     name: user.name
                 };
@@ -129,7 +130,8 @@ router.post("/login", (req, res) => {
                     (err, token) => {
                         res.json({
                             success: true,
-                            token: "Bearer " + token
+                            token: "Bearer " + token,
+                            payload: payload
                         });
                     }
                 );

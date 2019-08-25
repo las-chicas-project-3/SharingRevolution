@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 app.use(morgan("combined"));
 
-const passport= require("passport")
+const passport = require("passport")
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -32,7 +32,6 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 // Routes
 
-//app.use("/", User);
 
 
 // Add routes, both API and view

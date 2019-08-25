@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import People from "../components/People";
-import Container from "../components/Container";
 import Row from "../components/Row";
-import Col from "../components/Col";
 import Card from "../components/Card";
 import API from "../utils/API"
 import JumboTron from "../components/JumbotronUser";
@@ -17,13 +15,18 @@ class Products extends Component {
     userPoints: 0
   }
 
-  componentDidMount = () => {
+  componentDidMount = (res) => {
+    console.log("Res from Products.js: " + res);
     this.setState(this.props.info)
     //Check the user is the one he says it is
-    API.getUserId({ id: "5d6034f162d60c1f88f489bf" })
-      .then(data =>
-        this.setState({ currentUser: data.data[0] }),
-      )
+    API.getUserId({ id: "5d6194980064704d823e10da" })
+      .then(data => {
+        if (data.data[0]) {
+          this.setState({ currentUser: data.data[0] })
+        } else {
+          window.location.replace("/login");
+        }
+      })
   };
 
 
@@ -45,15 +48,13 @@ class Products extends Component {
     })
   }
 
-  componentDidUpdate = () => console.log(this.state)
-
   render() {
     return (
       <div>
         <People />
         <JumboTron name={this.state.currentUser.name} points={this.state.currentUser.points}>
         </JumboTron>
-  
+
         <Row>
           {this.state.users.map(user => {
             return <Card user={user} key={user._id}>
