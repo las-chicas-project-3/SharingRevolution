@@ -6,9 +6,11 @@ const bodyParser = require("body-parser");
 //const passport = require("./config/passport");
 const passport = require("passport");
 const users = require("./routes/api/users")
+const object = require("./routes/api/object")
+
 
 const morgan = require('morgan');
-//const routes = require("./routes");
+// const routes = require("./routes");
 const app = express();
 
 const PORT = process.env.PORT || 8080;
@@ -30,9 +32,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
-//app.use(routes);
+// app.use(routes);
 // Routes
 app.use("/api/users", users);
+app.use("/api/object", object);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SharingRevolution");

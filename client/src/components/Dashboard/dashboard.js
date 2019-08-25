@@ -12,6 +12,19 @@ import API from "../../utils/API";
 import JumboTron from "../JumbotronUser";
 
 class Dashboard extends Component {
+  
+  state = {
+    objects: []
+  }
+  componetDidMount = () => {
+    this.setState(this.props.info)
+  }
+
+  componetDidUpdate = () => {
+    console.log("From componentDidUpdate: this.state.objects")
+    console.log(this.state.objects)
+
+  }
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -37,18 +50,10 @@ class Dashboard extends Component {
         <JumboTron name={user.name.split(" ")[0]} points={user.points}>
         </JumboTron>
 
-        <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-            </h4>
-
-          </div>
-        </div>
+        {this.state.objects.map(object => {
+          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
+            </Card>
+        })}
       </div>
     );
   }

@@ -65,29 +65,28 @@ if (localStorage.jwtToken) {
 class App extends Component {
 
   state = {
-    users: [],
-    objects: [],
-    user: []
+    objects: []
   }
 
   componentDidMount() {
-    this.getUserFromDb();
     this.getObjectFromDb();
-    console.log(localStorage.jwtToken)
   }
 
   componentDidUpdate() {
-    console.log(this.state.user)
+    console.log("From componentDidUpdate")
+    console.log(this.state.objects)
   }
 
-  getUserFromDb = () => {
-    API.getUser().then(res => this.setState({ users: res.data }))
-  };
+  // getUserFromDb = () => {
+  //   API.getUser().then(res => this.setState({ users: res.data }))
+  // };
 
 
   getObjectFromDb = () => {
-    API.getObject().then(res => this.setState({ objects: res.data }))
-  };
+    API.getObject().then(res => {
+      this.setState({ objects: res.data })
+    })
+    };
 
   // login = (userData) => {
   //   // return API.login(input).then(res=> {
@@ -122,7 +121,8 @@ class App extends Component {
               <Route exact path="/signup" component={(props) => <Signup {...props} signup={this.signup} />} />
               <Route exact path="/login" component={() => <Login login={this.login} />} /> */}
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                {/* <PrivateRoute exact path="/dashboard" component={(props) => <Dashboard {...props} info={this.state} />} /> */}
+                <PrivateRoute exact path="/dashboard" component={(props) => <Dashboard {...props} info={this.state} />} />
               </Switch>
             </Wrapper>
           </div>
