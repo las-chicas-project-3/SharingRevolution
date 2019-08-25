@@ -20,7 +20,6 @@ router.get("/info", (req, res) => {
         })
 });
 
-
 //Getting information from a particular user
 router.get("/info/:id", (req, res) => {
     User.find({ _id: req.params.id })
