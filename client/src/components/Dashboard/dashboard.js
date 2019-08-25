@@ -12,15 +12,42 @@ import API from "../../utils/API";
 import JumboTron from "../JumbotronUser";
 
 class Dashboard extends Component {
+
+  state = {
+    objects: [],
+  }
+
+  componentDidMount = () => {
+    this.setState(this.props.info)
+  }
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
 
+
+  buyOnClick = (event) => {
+    event.preventDefault();
+    const user = this.props.auth.user
+    // Ask the user if he wants to do it
+    API.getObjectId(event.target.id).then(res => {
+      if (res.data[0].points <= user.points) {
+        alert("You can buy")
+        API.updateUser({ 
+          user: user, obj: res.data[0] 
+        })
+      } else {
+        alert("You don't have enough money")
+      }
+    })
+  }
+
+
   render() {
     const { user } = this.props.auth;
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+      <div>
         <People />
         <button
           style={{
@@ -34,21 +61,27 @@ class Dashboard extends Component {
         >
           Logout
             </button>
+
+
+
         <JumboTron name={user.name.split(" ")[0]} points={user.points}>
         </JumboTron>
 
-        <div className="row">
-          <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
-            </h4>
+        <Container style={{ marginTop: 30 }}>
+          <Row>
+            <Col size="md-12">
+              <h1>Our current products:</h1>
+            </Col>
+          </Row>
+        </Container>
 
-          </div>
-        </div>
+
+        {this.state.objects.map(object => {
+          return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
+          </Card>
+        })}
+
+
       </div>
     );
   }

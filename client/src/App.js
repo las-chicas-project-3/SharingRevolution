@@ -65,24 +65,12 @@ if (localStorage.jwtToken) {
 class App extends Component {
 
   state = {
-    users: [],
     objects: [],
-    user: []
   }
 
   componentDidMount() {
-    this.getUserFromDb();
     this.getObjectFromDb();
-    console.log(localStorage.jwtToken)
   }
-
-  componentDidUpdate() {
-    console.log(this.state.user)
-  }
-
-  getUserFromDb = () => {
-    API.getUser().then(res => this.setState({ users: res.data }))
-  };
 
 
   getObjectFromDb = () => {
@@ -122,12 +110,12 @@ class App extends Component {
               <Route exact path="/signup" component={(props) => <Signup {...props} signup={this.signup} />} />
               <Route exact path="/login" component={() => <Login login={this.login} />} /> */}
               <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/dashboard" component={(props) => <Dashboard {...props} info={this.state} />} />
               </Switch>
             </Wrapper>
+            <Footer />
           </div>
         </Router>
-        <Footer />
       </Provider>
     );
   }
