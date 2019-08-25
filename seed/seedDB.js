@@ -62,10 +62,6 @@ const objectSeed = [
   }
 ];
 
-
-
-
-
 db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))

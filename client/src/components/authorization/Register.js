@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link ,withRouter} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -86,7 +86,7 @@ class Register extends Component {
                                 />
                                 <label htmlFor="name">Name</label>
                                 <div style={{ color: "red" }} className="red-text">
-                                {errors.name}</div>
+                                    {errors.name}</div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -101,7 +101,7 @@ class Register extends Component {
                                 />
                                 <label htmlFor="email">Email</label>
                                 <div style={{ color: "red" }} className="red-text">
-                                {errors.email}</div>
+                                    {errors.email}</div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -117,7 +117,7 @@ class Register extends Component {
                                 />
                                 <label htmlFor="password">Password</label>
                                 <div style={{ color: "red" }} className="red-text">
-                                {errors.password}</div>
+                                    {errors.password}</div>
                             </div>
                             <div className="input-field col s12">
                                 <input
@@ -132,7 +132,7 @@ class Register extends Component {
                                 />
                                 <label htmlFor="password2">Confirm Password</label>
                                 <div style={{ color: "red" }} className="red-text">
-                                {errors.password2}</div>
+                                    {errors.password2}</div>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                 <button

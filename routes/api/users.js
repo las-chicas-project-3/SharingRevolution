@@ -29,7 +29,6 @@ router.get("/info", (req, res) => {
 router.get("/info/:id", (req, res) => {
     User.find({ _id: req.params.id })
         .then(function (dbUser) {
-            console.log(dbUser)
             res.json(dbUser);
         })
         .catch(function (err) {

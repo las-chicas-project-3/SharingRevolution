@@ -5,8 +5,6 @@ import { logoutUser } from "../../actions/authActions";
 
 import People from "../People";
 import Row from "../Row";
-import Col from "../Col";
-import Container from "../Container";
 import Card from "../Card";
 import API from "../../utils/API";
 import JumboTron from "../JumbotronUser";
@@ -43,7 +41,6 @@ class Dashboard extends Component {
   };
 
   componentDidUpdate = () => {
-    console.log(this.state)
   }
 
 
@@ -67,10 +64,6 @@ class Dashboard extends Component {
           obj: res.data[0]
         }).then(function (res) {
           window.location.reload()
-          // API.getUserId(userCurrent.id).then(res => {
-            console.log(res)
-            // this.setState({ points: res.data[0].points })
-          //  })
         })
       } else {
         alert("You don't have enough money")

@@ -15,7 +15,6 @@ const UserSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-//OLD VALUE:
 const User = mongoose.model("User", UserSchema);
 module.exports = User;
 
