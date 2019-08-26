@@ -1,4 +1,9 @@
-.delete-btn {
-  float: right;
-  color: #e74944;
+.btn {
+  background: #0433FF;
+  color: #8EFFF9;
+}
+
+.btn:hover {
+  background: #8EFFF9;
+  color: #0433FF;
 }
