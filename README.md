@@ -15,12 +15,12 @@ Sharing Revolution is organized into the following files:
 
 **Step-by-Step on how to run the application**
 
-![](/.gif)
+![](images/Sharing-Revolution.gif)
 
 **Link to deployed version of Sharing Revolution**
 
-Heroku:
-GitHub Repository:
+* Heroku: https://
+* GitHub Repository: https://github.com/las-chicas-project-3/SharingRevolution
 
 **Technologies Used** 
 
@@ -57,4 +57,7 @@ GitHub Repository:
 
 **Roles**
 
-All files are written by ckalorkoti.
+* Files written by techiegirl2010: HTML files, CSS files, server.js, Redux, config files, Passport files, GitHub merging.
+* Files written by ckalorkoti: React files, CSS files, HTML files, server.js, HTML and API routes, README, GitHub merging.
+* Files written by mafaldavillazan: Actions files, Redux, authorization files, MongoDB and Mongoose files, server.js, reducer files, util and token files, store file, config files, model and seed files, validation files, HTML and API routes, GitHub merging.
+

@@ -43,12 +43,6 @@ class Dashboard extends Component {
   componentDidUpdate = () => {
   }
 
-
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
-
   buyOnClick = (event) => {
     event.preventDefault();
 
@@ -79,18 +73,6 @@ class Dashboard extends Component {
     return (
       <div >
         <People />
-        <button
-          style={{
-            width: "150px",
-            borderRadius: "3px",
-            letterSpacing: "1.5px",
-            marginTop: "1rem"
-          }}
-          onClick={this.onLogoutClick}
-          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-        >
-          Logout
-            </button>
         <JumboTron name={user.name.split(" ")[0]} points={this.state.userLogInPoints}>
         </JumboTron>
 

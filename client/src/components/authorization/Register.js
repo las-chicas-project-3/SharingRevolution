@@ -73,14 +73,15 @@ class Register extends Component {
                                     Already have an account? <Link to="/login">Log in</Link>
                                 </p>
                             </div>
-                            <form noValidate onSubmit={this.onSubmit}>
+                            <form onSubmit={this.onSubmit}>
                                 <div className="input-field col s12">
                                     <input
+                                        autoComplete="nope"
+                                        type= "text"
                                         onChange={this.onChange}
                                         value={this.state.name}
                                         error={errors.name}
                                         id="name"
-                                        type="text"
                                         className={classnames("", {
                                             invalid: errors.name
                                         })}
@@ -91,6 +92,7 @@ class Register extends Component {
                                 </div>
                                 <div className="input-field col s12">
                                     <input
+                                        autocomplete="off"
                                         onChange={this.onChange}
                                         value={this.state.email}
                                         error={errors.email}
@@ -106,6 +108,7 @@ class Register extends Component {
                                 </div>
                                 <div className="input-field col s12">
                                     <input
+                                        autocomplete="off"
                                         onChange={this.onChange}
                                         value={this.state.password}
                                         error={errors.password}
@@ -122,6 +125,7 @@ class Register extends Component {
                                 </div>
                                 <div className="input-field col s12">
                                     <input
+                                        autocomplete="off"
                                         onChange={this.onChange}
                                         value={this.state.password2}
                                         error={errors.password2}
