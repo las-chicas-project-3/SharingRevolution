@@ -10,7 +10,6 @@ app.use(morgan("combined"));
 
 const passport= require("passport")
 
-// Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
