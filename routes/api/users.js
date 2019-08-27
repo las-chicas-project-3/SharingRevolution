@@ -48,6 +48,8 @@ router.put("/update", (req, res) => {
 
     User.findOneAndUpdate({ _id: user._id }, { $set: { points: result } })
         .then(function (dbUser) {
+            console.log("Users.js: dbUser")
+            console.log(dbUser)
             res.json(dbUser);
 
         })

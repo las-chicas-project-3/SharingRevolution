@@ -34,7 +34,7 @@ class Dashboard extends Component {
     API.getUserId(this.props.auth.user.id).then(res => {
       this.setState({
         userLogIn: res.data[0],
-        userLogInPoints:res.data[0].points
+        userLogInPoints: res.data[0].points
       })
     })
 
@@ -48,17 +48,29 @@ class Dashboard extends Component {
 
     const userCurrent = this.state.userLogIn
     const objId = event.target.id
-
+    let result;
     API.getObjectId(objId).then(res => {
       if (res.data[0].points <= userCurrent.points) {
-        let result = userCurrent.points - res.data[0].points
-        this.setState({ userLogInPoints: result })
+        result = userCurrent.points - res.data[0].points
+        console.log(userCurrent)
+        console.log(res.data[0])
         API.updateUser({
           user: userCurrent,
           obj: res.data[0]
-        }).then(function (res) {
-          window.location.reload()
         })
+          .then((res) => {
+            // window.location.reload()
+            API.getUserId(this.props.auth.user.id).then(res => {
+              this.setState({
+                userLogIn: res.data[0],
+                userLogInPoints: res.data[0].points
+              })
+            })        
+            console.log(res)
+            // this.setState({ userLogInPoints: result }, () => this.props.history.push("/dashboard")
+            // )
+
+          })
       } else {
         alert("You don't have enough money")
       }
