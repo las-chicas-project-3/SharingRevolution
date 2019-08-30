@@ -59,26 +59,19 @@ class Dashboard extends Component {
           obj: res.data[0]
         })
           .then((res) => {
-            // window.location.reload()
             API.getUserId(this.props.auth.user.id).then(res => {
               this.setState({
                 userLogIn: res.data[0],
                 userLogInPoints: res.data[0].points
               })
-            })        
+            })
             console.log(res)
-            // this.setState({ userLogInPoints: result }, () => this.props.history.push("/dashboard")
-            // )
-
           })
       } else {
         alert("You don't have enough money")
       }
     })
-
-
   }
-
 
   render() {
     const { user } = this.props.auth;
@@ -87,15 +80,12 @@ class Dashboard extends Component {
         <People />
         <JumboTron name={user.name.split(" ")[0]} points={this.state.userLogInPoints}>
         </JumboTron>
-
         <Row>
           {this.state.objects.map(object => {
             return <Card product={object} key={object._id} id={object._id} onClick={this.buyOnClick}>
             </Card>
           })}
         </Row>
-
-
       </div>
     );
   }
