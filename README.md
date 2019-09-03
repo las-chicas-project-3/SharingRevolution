@@ -19,7 +19,7 @@ Sharing Revolution is organized into the following files:
 
 **Link to deployed version of Sharing Revolution**
 
-* Heroku: https://
+* Heroku: https://sharingrevolution.herokuapp.com/
 * GitHub Repository: https://github.com/las-chicas-project-3/SharingRevolution
 
 **Technologies Used** 
