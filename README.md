@@ -4,7 +4,7 @@
 
 * Users can login and purchase items with points.
 * Allows people to sell their unused items to people who need them.
-* How people to purchase items from people who no longer need them.
+* How people purchase items from people who no longer need them.
 
 
 **How the application is organized**
